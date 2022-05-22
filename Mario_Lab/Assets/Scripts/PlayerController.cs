@@ -16,8 +16,16 @@ private SpriteRenderer marioSprite;
 private bool faceRightState = true;
 public Transform enemyLocation;
 public TextMeshProUGUI scoreText;
+public TextMeshProUGUI screenText;
 private int score = 0;
 private bool countScoreState = false;
+public TextMeshProUGUI  btnText;
+
+private Vector2 originalPos;
+private float originalRotation;
+private Vector2 originalEnemyPos;
+
+public Transform uiParent;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +34,11 @@ private bool countScoreState = false;
 	Application.targetFrameRate =  30;
 	marioBody = GetComponent<Rigidbody2D>();
     marioSprite = GetComponent<SpriteRenderer>();
+    originalPos = marioBody.position;
+    // Debug.log(typeof(marioBody.rotation));
+    //originalRotation = marioBody.rotation;
+    originalRotation = marioBody.rotation;
+    originalEnemyPos = enemyLocation.position;
         
     }
 
@@ -93,8 +106,29 @@ void OnTriggerEnter2D(Collider2D other)
       if (other.gameObject.CompareTag("Enemy"))
       {
           Debug.Log("Collided with Gomba!");
-          SceneManager.LoadScene("SampleScene");
+          Time.timeScale = 0.0f;
+          
+        //   SceneManager.LoadScene("SampleScene");
+        //   screenText.text = "GameOver!";
+        //   btnText.text = "Play Again";
+        enemyLocation.position = originalEnemyPos;
+        marioBody.position = originalPos;
+        if (!faceRightState){
+            faceRightState = true;
+            marioSprite.flipX = false;
+        }
+        
       }
+      btnText.text = "Play Again";
+      screenText.text = "GameOver!\n High Score: " + score.ToString();
+      score = 0;
+      foreach (Transform eachChild in uiParent)
+      {
+          Debug.Log(eachChild.name);
+          eachChild.gameObject.SetActive(true);
+          
+      }
+      
   }
 
 }

@@ -113,10 +113,10 @@ void OnTriggerEnter2D(Collider2D other)
         //   btnText.text = "Play Again";
         // enemyLocation.position = originalEnemyPos;
         // marioBody.position = originalPos;
-        // if (!faceRightState){
-        //     faceRightState = true;
-        //     marioSprite.flipX = false;
-        // }
+        if (!faceRightState){
+            faceRightState = true;
+            marioSprite.flipX = false;
+        }
         
       }
     //   btnText.text = "Play Again";

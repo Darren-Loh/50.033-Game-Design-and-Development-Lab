@@ -106,28 +106,28 @@ void OnTriggerEnter2D(Collider2D other)
       if (other.gameObject.CompareTag("Enemy"))
       {
           Debug.Log("Collided with Gomba!");
-          Time.timeScale = 0.0f;
+        // Time.timeScale = 0.0f;
           
-        //   SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameoverScene");
         //   screenText.text = "GameOver!";
         //   btnText.text = "Play Again";
-        enemyLocation.position = originalEnemyPos;
-        marioBody.position = originalPos;
-        if (!faceRightState){
-            faceRightState = true;
-            marioSprite.flipX = false;
-        }
+        // enemyLocation.position = originalEnemyPos;
+        // marioBody.position = originalPos;
+        // if (!faceRightState){
+        //     faceRightState = true;
+        //     marioSprite.flipX = false;
+        // }
         
       }
-      btnText.text = "Play Again";
-      screenText.text = "GameOver!\n High Score: " + score.ToString();
-      score = 0;
-      foreach (Transform eachChild in uiParent)
-      {
-          Debug.Log(eachChild.name);
-          eachChild.gameObject.SetActive(true);
+    //   btnText.text = "Play Again";
+    //   screenText.text = "GameOver!\n High Score: " + score.ToString();
+    //   score = 0;
+    //   foreach (Transform eachChild in uiParent)
+    //   {
+    //       Debug.Log(eachChild.name);
+    //       eachChild.gameObject.SetActive(true);
           
-      }
+    //   }
       
   }
 

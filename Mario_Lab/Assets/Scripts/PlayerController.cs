@@ -14,31 +14,37 @@ private bool onGroundState = true;
 public float upSpeed = 1;
 private SpriteRenderer marioSprite;
 private bool faceRightState = true;
-public Transform enemyLocation;
-public TextMeshProUGUI scoreText;
+// public Transform enemyLocation;
+// public TextMeshProUGUI scoreText;
 public TextMeshProUGUI screenText;
-private int score = 0;
+// private int score = 0;
 private bool countScoreState = false;
 public TextMeshProUGUI  btnText;
 
-private Vector2 originalPos;
-private float originalRotation;
+// private Vector2 originalPos;
+// private float originalRotation;
 private Vector2 originalEnemyPos;
 
 public Transform uiParent;
+
+//components
+private Animator marioAnimator;
+private AudioSource marioAudioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         // Set to be 30 FPS
-	Application.targetFrameRate =  30;
-	marioBody = GetComponent<Rigidbody2D>();
-    marioSprite = GetComponent<SpriteRenderer>();
-    originalPos = marioBody.position;
-    // Debug.log(typeof(marioBody.rotation));
-    //originalRotation = marioBody.rotation;
-    originalRotation = marioBody.rotation;
-    originalEnemyPos = enemyLocation.position;
+      Application.targetFrameRate =  30;
+      marioBody = GetComponent<Rigidbody2D>();
+      marioSprite = GetComponent<SpriteRenderer>();
+      marioAnimator = GetComponent<Animator>();
+      marioAudioSource = GetComponent<AudioSource>();
+    // originalPos = marioBody.position;
+    // // Debug.log(typeof(marioBody.rotation));
+    // //originalRotation = marioBody.rotation;
+    // originalRotation = marioBody.rotation;
+    // originalEnemyPos = enemyLocation.position;
         
     }
 
@@ -47,24 +53,35 @@ public Transform uiParent;
     {
         // toggle state
       if (Input.GetKeyDown("a") && faceRightState){
-          faceRightState = false;
-          marioSprite.flipX = true;
+        faceRightState = false;
+        marioSprite.flipX = true;
+              //check velocity
+        if (Mathf.Abs(marioBody.velocity.x)>0.05){
+          marioAnimator.SetTrigger("onSkid");
+        }
+            
       }
 
       if (Input.GetKeyDown("d") && !faceRightState){
-          faceRightState = true;
-          marioSprite.flipX = false;
+        faceRightState = true;
+        marioSprite.flipX = false;
+              //check velocity
+        if (Mathf.Abs(marioBody.velocity.x)>0.05){
+          marioAnimator.SetTrigger("onSkid");
+        }
       }
+      marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.velocity.x));
+
            // when jumping, and Gomba is near Mario and we haven't registered our score
-      if (!onGroundState && countScoreState)
-      {
-          if (Mathf.Abs(transform.position.x - enemyLocation.position.x) < 0.5f)
-          {
-              countScoreState = false;
-              score++;
-              Debug.Log(score);
-          }
-      }
+    //   if (!onGroundState && countScoreState)
+    //   {
+    //       if (Mathf.Abs(transform.position.x - enemyLocation.position.x) < 0.5f)
+    //       {
+    //           countScoreState = false;
+    //           score++;
+    //           Debug.Log(score);
+    //       }
+    //   }
     }
 
     void  FixedUpdate()
@@ -85,6 +102,7 @@ public Transform uiParent;
       if (Input.GetKeyDown("space") && onGroundState){
           marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
           onGroundState = false;
+          marioAnimator.SetBool("onGround",onGroundState);
           countScoreState = true; //check if Gomba is underneath
       }
 
@@ -96,9 +114,15 @@ public Transform uiParent;
   {
       if (col.gameObject.CompareTag("Ground")) {
           onGroundState = true;
+          marioAnimator.SetBool("onGround",onGroundState);
           countScoreState = false; // reset score state
-          scoreText.text = "Score: " + score.ToString();
+        //   scoreText.text = "Score: " + score.ToString();
       };
+
+      if (col.gameObject.CompareTag("Obstacles") && Mathf.Abs(marioBody.velocity.y)<0.01f){
+          onGroundState = true;
+          marioAnimator.SetBool("onGround",onGroundState);
+      }
   }
 
 void OnTriggerEnter2D(Collider2D other)
@@ -130,5 +154,7 @@ void OnTriggerEnter2D(Collider2D other)
     //   }
       
   }
-
+void PlayJumpSound(){
+marioAudioSource.PlayOneShot(marioAudioSource.clip);
+}
 }

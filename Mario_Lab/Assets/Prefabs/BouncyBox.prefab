@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8297595871702068609}
   - component: {fileID: 8297595871702068608}
   - component: {fileID: 8297595871702068620}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HittableSimple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2ba2c61123aaad94c950ef55d4154ff1, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 8297595872523220229}
   - component: {fileID: 8297595872523220230}
   - component: {fileID: 8297595872523220231}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TopCollider
   m_TagString: Obstacles
   m_Icon: {fileID: 0}

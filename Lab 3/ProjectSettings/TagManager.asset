@@ -17,16 +17,16 @@ TagManager:
   - UI
   - Obstacles
   - QuestionBox
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - BG0
+  - BG1
+  - BG2
+  - BG3
+  - BG4
+  - BG5
+  - BG6
+  - BG7
+  - BG8
+  - BG9
   - 
   - 
   - 
@@ -42,9 +42,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background Image
-    uniqueID: 3851255533
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

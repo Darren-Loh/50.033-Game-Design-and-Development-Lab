@@ -12,6 +12,7 @@ private Vector2 velocity;
 private Rigidbody2D mushroomBody;
 private int[ ] randDirection;
 private bool touchedPlayer = false;
+private bool already_collided = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,9 +45,9 @@ private bool touchedPlayer = false;
         
       
     }
-    void  OnBecameInvisible(){
-	Destroy(gameObject);	
-}
+//     void  OnBecameInvisible(){
+// 	Destroy(gameObject);	
+// }
   void OnCollisionEnter2D(Collision2D col)
   {
       if (col.gameObject.CompareTag("MushroomObstacles")) {
@@ -55,6 +56,7 @@ private bool touchedPlayer = false;
       }
       if (col.gameObject.CompareTag("Player")) {
           touchedPlayer = true;
+        //   already_collided = true;
       }
 
   }

@@ -45,6 +45,8 @@ private AudioSource marioAudioSource;
     // //originalRotation = marioBody.rotation;
     // originalRotation = marioBody.rotation;
     // originalEnemyPos = enemyLocation.position;
+    GameManager.OnPlayerDeath  +=  PlayerDiesSequence;
+    
         
     }
 
@@ -82,6 +84,13 @@ private AudioSource marioAudioSource;
     //           Debug.Log(score);
     //       }
     //   }
+    if (Input.GetKeyDown("z")){
+      CentralManager.centralManagerInstance.consumePowerup(KeyCode.Z,this.gameObject);
+    }
+
+    if (Input.GetKeyDown("x")){
+      CentralManager.centralManagerInstance.consumePowerup(KeyCode.X,this.gameObject);
+    }
     }
 
     void  FixedUpdate()
@@ -129,10 +138,10 @@ void OnTriggerEnter2D(Collider2D other)
   {
       if (other.gameObject.CompareTag("Enemy"))
       {
-          Debug.Log("Collided with Gomba!");
+          // Debug.Log("Collided with Gomba!");
         // Time.timeScale = 0.0f;
           
-        SceneManager.LoadScene("GameoverScene");
+        // SceneManager.LoadScene("StartingScene");
         //   screenText.text = "GameOver!";
         //   btnText.text = "Play Again";
         // enemyLocation.position = originalEnemyPos;
@@ -152,9 +161,23 @@ void OnTriggerEnter2D(Collider2D other)
     //       eachChild.gameObject.SetActive(true);
           
     //   }
+
       
   }
 void PlayJumpSound(){
 marioAudioSource.PlayOneShot(marioAudioSource.clip);
+}
+    void  PlayerDiesSequence(){
+	// Mario dies
+	Debug.Log("Mario dies");
+	// do whatever you want here, animate etc
+	// ...
+
+  GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
+
+  Vector2 direction =  new  Vector2(0, 25);
+	marioBody.AddForce(direction, ForceMode2D.Impulse);
+  GetComponent<Collider2D>().enabled  =  false;
+
 }
 }

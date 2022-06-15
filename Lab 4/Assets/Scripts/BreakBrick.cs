@@ -6,6 +6,8 @@ public class BreakBrick : MonoBehaviour
 {
 	public GameObject debris;
 	private bool broken = false;
+	private GameObject coin;
+	// private GameObject breakbrickParent;
     
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,9 @@ public class BreakBrick : MonoBehaviour
 		gameObject.transform.parent.GetComponent<SpriteRenderer>().enabled  =  false;
 		gameObject.transform.parent.GetComponent<BoxCollider2D>().enabled  =  false;
 		GetComponent<EdgeCollider2D>().enabled  =  false;
+		// breakbrickParent = this.transform.parent.gameObject;
+		coin = this.transform.parent.GetChild(2).gameObject;
+		coin.SetActive(true);
 	}
 }
 }

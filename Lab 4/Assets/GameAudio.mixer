@@ -218,7 +218,13 @@ AudioMixerController:
     - cbd1c51989f1a3c4bb2c84e3009c4a7a
     - f3411d6e3b5797d4e95e09faadfd42cb
     name: View
-  m_CurrentViewIndex: 0
+  - guids:
+    - 5b12d054e89ad934588c164032f97826
+    - 87a863e70da49f94caf18ab387aff2cd
+    - cbd1c51989f1a3c4bb2c84e3009c4a7a
+    - f3411d6e3b5797d4e95e09faadfd42cb
+    name: SFXs only
+  m_CurrentViewIndex: 1
   m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
 AudioMixerGroupController:

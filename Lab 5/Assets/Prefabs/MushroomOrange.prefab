@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5784781222641670038}
   - component: {fileID: 6317206587633265909}
   - component: {fileID: 6494054021012053221}
-  - component: {fileID: -7297523531004070071}
+  - component: {fileID: 7499278822566897544}
   m_Layer: 3
   m_Name: MushroomOrange
   m_TagString: Obstacles
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2c938deb461bff4386a7a88547c4d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-7297523531004070071
+--- !u!114 &7499278822566897544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,8 +156,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1900588337507509510}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bf3617a8567c824e86549fd01a1f02a, type: 3}
+  m_Script: {fileID: 11500000, guid: ec26fdfb83d9ca5449be737ce75620f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  t: {fileID: 2800000, guid: 2de48165ae9f3ae47a8906ddc04e7ae4, type: 3}
-  gameConstants: {fileID: 11400000, guid: a894109aee1f17544b3826345a04b3b4, type: 2}
+  stats: {fileID: 11400000, guid: e9dc98f24a630a84698412a8f8348b57, type: 2}
+  onCollected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: a25856f2cee9cd246a26cf09bab50944, type: 2}
+        m_TargetAssemblyTypeName: PowerupEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -24,3 +24,7 @@ MonoBehaviour:
   enemyPatroltime: 3
   groundSurface: -1
   enemyRejoice: 0
+  playerStartingMaxSpeed: 5
+  playerMaxJumpSpeed: 30
+  playerDefaultForce: 150
+  groundDistance: -4
